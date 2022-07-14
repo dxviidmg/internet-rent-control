@@ -24,15 +24,16 @@ class Service(TimeStampedModel):
     status_choices = (
         (0, 'Sin iniciar'),
         (1, 'Activo'),
-        (2, 'Suspención temporal'),
+        (2, 'Suspención'),
         (3, 'Cancelación'),
     )
+
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     package = models.ForeignKey(Package, on_delete=models.CASCADE)
     address = models.ForeignKey(Address, on_delete=models.CASCADE)
     status = models.IntegerField(choices=status_choices, default=0)    
     start_date_operation = models.DateField()
-
+    has_late_payments = models.BooleanField(default=False)
 
     def __str__(self):
         return '#{}'.format(self.pk)
