@@ -4,6 +4,7 @@
 
 {%block content%}
 
+<a href="{%url 'services:service-create'%}">Crear servicio</a>
 
 <table class="table" id="service-list-table">
     <thead>
@@ -26,13 +27,15 @@
     </tbody>
   </table>
 
-  {% block js %}
-  <script>
-      $(document).ready(function () {
-          $('#service-list-table').DataTable();
-      });
-  </script>
-  
-{% endblock js %}
+
 
 {%endblock content%}
+
+{% block js %}
+<script>
+    $(document).ready(function () {
+        $('#service-list-table').DataTable();
+    });
+</script>
+
+{% endblock js %}

@@ -29,8 +29,8 @@ class Service(TimeStampedModel):
     )
 
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
-    package = models.ForeignKey(Package, on_delete=models.CASCADE)
     address = models.ForeignKey(Address, on_delete=models.CASCADE)
+    package = models.ForeignKey(Package, on_delete=models.CASCADE)
     status = models.IntegerField(choices=status_choices, default=0)    
     start_date_operation = models.DateField()
     has_late_payments = models.BooleanField(default=False)

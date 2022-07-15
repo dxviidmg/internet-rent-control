@@ -11,6 +11,7 @@ class Person(models.Model):
     def __str__(self):
         return '{} {} {}'.format(self.first_name, self.last_name, self.second_last_name)
         
+        
 class Client(Person):
     phone_number = models.CharField(max_length=10, null=True, blank=True) 
 
