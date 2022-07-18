@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{%block title%}Services{%endblock title%}
+
+{%block content%}
+
+<a href="{%url 'services:service-create'%}">Crear servicio</a>
+
+<table class="table" id="service-list-table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Client</th>
+        <th scope="col">Address</th>
+        <th scope="col">Package</th>
+      </tr>
+    </thead>
+    <tbody>
+        {%for service in object_list%}
+        <tr>
+        <th>{{service.id}}</th>
+        <td>{{service.client}}</td>
+        <td>{{service.address}}</td>
+        <td>{{service.package}}</td>
+        </tr>
+        {%endfor%}
+    </tbody>
+  </table>
+
+
+
+{%endblock content%}
+
+{% block js %}
+<script>
+    $(document).ready(function () {
+        $('#service-list-table').DataTable();
+    });
+</script>
+
+{% endblock js %}

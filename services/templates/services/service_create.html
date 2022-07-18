@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{%block title%} Create service{%endblock title%}
+
+{%block content%}
+
+
+<form action="." method="post">
+  {%csrf_token%}
+  {{client_form|crispy}}
+  {{address_form|crispy}}
+  {{service_form|crispy}}
+  <br>
+  <input type="submit" value="Crear" class="btn btn-light">
+</form>
+
+
+
+{%endblock content%}
+
+{% block js %}
+{% endblock js %}
