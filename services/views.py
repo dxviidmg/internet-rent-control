@@ -1,13 +1,10 @@
 from django.views.generic.list import ListView
-from .models import Service, Address
-from extra_views import CreateWithInlinesView, UpdateWithInlinesView, InlineFormSetFactory
-from clients.models import Client
-from django.views.generic import CreateView
+from .models import Service
 from django.views.generic import View
 from django.shortcuts import render
 from clients.forms import ClientForm
 from .forms import ServiceForm, AddressForm
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, redirect
 
 
 class ServiceListView(ListView):
