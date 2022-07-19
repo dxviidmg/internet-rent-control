@@ -1,9 +1,9 @@
 from django.db import models
 
 class Person(models.Model):
-    first_name = models.CharField(max_length=20)
-    last_name = models.CharField(max_length=20)
-    second_last_name = models.CharField(max_length=20)
+    first_name = models.CharField(max_length=20, verbose_name='Nombre')
+    last_name = models.CharField(max_length=20, verbose_name='Apellido paterno')
+    second_last_name = models.CharField(max_length=20,verbose_name='Apellido materno')
 
     class Meta:
         abstract = True
@@ -13,5 +13,5 @@ class Person(models.Model):
         
         
 class Client(Person):
-    phone_number = models.CharField(max_length=10, null=True, blank=True) 
+    phone_number = models.CharField(max_length=10, null=True, blank=True, verbose_name='Telefono') 
 
