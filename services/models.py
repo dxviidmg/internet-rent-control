@@ -30,10 +30,17 @@ class Service(TimeStampedModel):
 
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     address = models.ForeignKey(Address, on_delete=models.CASCADE)
-    package = models.ForeignKey(Package, on_delete=models.CASCADE)
+    package = models.ForeignKey(Package, on_delete=models.CASCADE, verbose_name='Paquete')
     status = models.IntegerField(choices=status_choices, default=0)    
-    start_date_operation = models.DateField()
+    start_date_operation = models.DateField(verbose_name='Fecha de inicio de operación')
     has_late_payments = models.BooleanField(default=False)
 
     def __str__(self):
         return '#{}'.format(self.pk)
+
+    def get_end_of_validity(self):
+        payments = self.payments.all().order_by('end_of_validity')
+        if payments.exists():
+            return payments.last().end_of_validity
+        return self.start_date_operation
+

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'packages',
     'clients',
     'services',
+    'payments',
     'crispy_forms'
 ]
 
