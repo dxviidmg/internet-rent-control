@@ -22,6 +22,7 @@
         <td>{{service.client}}</td>
         <td>{{service.address}}</td>
         <td>{{service.package}}</td>
+        <td><a href="{%url 'services:service-detail' service.pk%}">Ver detalle</a></td>
         </tr>
         {%endfor%}
     </tbody>

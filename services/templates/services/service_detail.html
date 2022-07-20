@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{%block title%}Detalle del servicio{%endblock title%}
+
+{%block content%}
+
+<p>{{object.client}}</p>
+<p>{{object.address}}</p>
+<p>{{object.package}}</p>
+
+{% include 'payments/payment_list.html' %}
+
+
+{%endblock content%}
+

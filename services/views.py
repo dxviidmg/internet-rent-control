@@ -1,10 +1,13 @@
 from django.views.generic.list import ListView
+
+from payments.models import Payment
 from .models import Service
 from django.views.generic import View
 from django.shortcuts import render
 from clients.forms import ClientForm
 from .forms import ServiceForm, AddressForm
 from django.shortcuts import render, redirect
+from django.views.generic.detail import DetailView
 
 
 class ServiceListView(ListView):
@@ -43,3 +46,12 @@ class ClientAndServiceCreateView(View):
 
 #        messages.success(request, "Actualización exitosa")
         return redirect("services:service-list")
+
+
+class ServiceDetailView(DetailView):
+    model = Service
+
+    def get_context_data(self, *args, **kwargs):
+        data = super().get_context_data(*args, **kwargs)
+        data['object_list'] = Payment.objects.filter(service_id=self.kwargs['pk'])
+        return data
