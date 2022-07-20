@@ -37,3 +37,10 @@ class Service(TimeStampedModel):
 
     def __str__(self):
         return '#{}'.format(self.pk)
+
+    def get_end_of_validity(self):
+        payments = self.payments.all().order_by('end_of_validity')
+        if payments.exists():
+            return payments.last().end_of_validity
+        return self.start_date_operation
+

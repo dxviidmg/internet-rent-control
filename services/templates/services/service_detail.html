@@ -2,11 +2,21 @@
 
 {%block title%}Detalle del servicio{%endblock title%}
 
+
+
 {%block content%}
+
+<a href="{%url 'services:service-list'%}">Regresar</a>
 
 <p>{{object.client}}</p>
 <p>{{object.address}}</p>
 <p>{{object.package}}</p>
+<p>{{object.start_date_operation}}</p>
+<p>{{object.get_end_of_validity}}</p>
+
+
+<a href="{%url 'payments:payment-create' object.pk%}">Pagar</a>
+
 
 {% include 'payments/payment_list.html' %}
 

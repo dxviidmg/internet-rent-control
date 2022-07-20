@@ -3,7 +3,7 @@ from services.models import Service, TimeStampedModel
 
 
 class Payment(TimeStampedModel):
-    service = models.ForeignKey(Service, on_delete=models.CASCADE)
+    service = models.ForeignKey(Service, on_delete=models.CASCADE, related_name='payments')
     end_of_validity = models.DateField()
     total = models.DecimalField(max_digits=6, decimal_places=2)
 
