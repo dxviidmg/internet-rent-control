@@ -14,6 +14,8 @@
         <th scope="col">Cliente</th>
         <th scope="col">Domicilio</th>
         <th scope="col">Paquete</th>
+        <th scope="col">Tiene adeudos</th>
+        <th scope="col">Ver detalle</th>
       </tr>
     </thead>
     <tbody>
@@ -23,6 +25,7 @@
         <td>{{service.client}}</td>
         <td>{{service.address}}</td>
         <td>{{service.package}}</td>
+        <td>{{service.has_late_payments}}</td>
         <td><a href="{%url 'services:service-detail' service.pk%}">Ver detalle</a></td>
         </tr>
         {%endfor%}
