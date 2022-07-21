@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'packages',
     'clients',
     'services',
+    'payments',
     # modules
     'crispy_forms',
     'django_extensions'
