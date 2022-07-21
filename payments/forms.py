@@ -5,7 +5,6 @@ from dateutil.relativedelta import relativedelta
 
 
 class PaymentForm(forms.ModelForm):
-    months = forms.IntegerField()
 
     class Meta:
         model = Payment
