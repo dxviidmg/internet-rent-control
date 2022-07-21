@@ -17,7 +17,10 @@ class Address(models.Model):
     city = models.CharField(max_length=50, verbose_name='Ciudad')
     
     def __str__(self):
+        if self.street_address == '':
+            return '{}, {}'.format(self.location, self.city)
         return '{}, {}, {}'.format(self.street_address, self.location, self.city)
+
 
 class Service(TimeStampedModel):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)

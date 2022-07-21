@@ -14,7 +14,7 @@
         <th scope="col">Cliente</th>
         <th scope="col">Domicilio</th>
         <th scope="col">Paquete</th>
-        <th scope="col">Tiene adeudos</th>
+        <th scope="col">Pagos al corriente</th>
         <th scope="col">Ver detalle</th>
       </tr>
     </thead>
@@ -25,7 +25,7 @@
         <td>{{service.client}}</td>
         <td>{{service.address}}</td>
         <td>{{service.package}}</td>
-        <td>{{service.has_late_payments}}</td>
+        <td>{%if service.has_late_payments%} <i style="color: red;" class="fa fa-times-circle" aria-hidden="true"></i> {%else%} <i style="color: green;"  class="fa fa-check-circle" aria-hidden="true"></i>{%endif%}</td>
         <td><a href="{%url 'services:service-detail' service.pk%}">Ver detalle</a></td>
         </tr>
         {%endfor%}
