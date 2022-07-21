@@ -14,5 +14,5 @@ class Person(models.Model):
         
 class Client(Person):
     phone_number = models.CharField(max_length=10, null=True, blank=True)
-#    belongs_to_partner = models.BooleanField(default=False) 
+    belongs_to_partner = models.BooleanField(default=False) 
 
