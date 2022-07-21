@@ -1,4 +1,5 @@
 from email.policy import default
+from enum import unique
 from random import choices
 from django.db import models
 
@@ -14,3 +15,6 @@ class Package(models.Model):
 
     def __str__(self):
         return '{}Mbps ${}. Frecuencia: {}'.format(self.bandwidth, self.price, self.get_payment_frequency_display())
+
+    class Meta:
+        unique_together = ['bandwidth', 'price', 'payment_frequency']
