@@ -15,7 +15,7 @@ class ServiceListView(ListView):
 
 
 class ClientAddressServiceView(View):
-    template_name = 'services/service_create.html'
+    template_name = 'services/service_form.html'
     def get(self, request, pk=None):
 
         if pk:
@@ -24,11 +24,13 @@ class ClientAddressServiceView(View):
             address_form = AddressForm(instance=service.address)
             service_form = ServiceForm(instance=service)
         else:
+            service = None
             client_form = ClientForm()
             address_form = AddressForm()
             service_form = ServiceForm()
 
         context = {
+            'service': service,
             'client_form': client_form,
             'address_form': address_form,
             'service_form': service_form,

@@ -12,10 +12,10 @@
   {{address_form|crispy}}
   {{service_form|crispy}}
   <br>
-  <input type="submit" value="Crear" class="btn btn-light">
+  <input type="submit" value="{%if service%}Actualizar{%else%}Crear{%endif%}" class="btn btn-light">
+
+  
 </form>
-
-
 
 {%endblock content%}
 
