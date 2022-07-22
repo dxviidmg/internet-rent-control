@@ -58,6 +58,6 @@ class Service(TimeStampedModel):
         return (today - self.get_end_of_validity()).days
 
     def has_updated_data(self):
-        if self.address.street_address == str(self.pk):
+        if self.address.street_address == str(self.pk) or self.client.phone_number in [None, '']:
             return False
         return True

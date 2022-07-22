@@ -13,9 +13,11 @@
 <p><b>Paquete:</b> {{object.package}}</p>
 <p><b>Inicio de servicio:</b> {{object.start_date_operation}}</p>
 <p><b>Fecha de corte:</b> {{object.get_end_of_validity}}</p>
+<a href="{%url 'services:service-update' object.pk%}">Actualizar datos</a>
 
-
+<br>
 <a href="{%url 'payments:payment-create' object.pk%}">Pagar</a>
+
 
 
 {% include 'payments/payment_list.html' %}
