@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
-<h2>Registrar pago</h2>
-
 {%block content%}
 
 <form method="post">{% csrf_token %}
+    <h3>Registrar pago al servicio {{service.pk}} del cliente {{service.client}}</h3>
+    <p>Fecha de corte: {{service.get_end_of_validity}}</p>
     {{ form.as_p }}
-    <input type="submit" value="Save">
+    <input type="submit" value="Registrar">
     <button><a href="{%url 'services:service-detail' service.pk%}">Regresar</a></button>
 </form>
 
