@@ -11,4 +11,13 @@ class AddressForm(forms.ModelForm):
 class ServiceForm(forms.ModelForm):
     class Meta:
         model = Service
-        exclude = ['client', 'address', 'status', 'has_late_payments']
+        exclude = ['client', 'address']
+
+        widgets = {
+            'start_date_operation': forms.DateInput(
+                format=('%Y-%m-%d'),
+                attrs={
+                    'placeholder': 'Select a date',
+                    'type': 'date'
+                  }),
+                }

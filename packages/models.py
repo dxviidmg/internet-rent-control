@@ -18,3 +18,4 @@ class Package(models.Model):
 
     class Meta:
         unique_together = ['bandwidth', 'price', 'payment_frequency']
+        ordering = ['bandwidth', 'price']

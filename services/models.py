@@ -37,9 +37,27 @@ class Service(TimeStampedModel):
             return payments.last().end_of_validity
         return self.start_date_operation
 
-    def has_late_payments(self):
+    def is_paid_today(self):
         today = date.today()
-        if today < self.get_end_of_validity():
+        if today > self.get_end_of_validity():
             return False
         return True
 
+    def get_payment_day(self):
+        return self.start_date_operation.day
+
+    def belongs_to(self):
+        if self.client.belongs_to_partner:
+            return 'SOCIO'
+        return 'GRAK'
+
+    def calculate_days_late_payment(self):            
+        today = date.today()
+        if self.is_paid_today():
+            return 0
+        return (today - self.get_end_of_validity()).days
+
+    def has_updated_data(self):
+        if self.address.street_address == str(self.pk):
+            return False
+        return True
