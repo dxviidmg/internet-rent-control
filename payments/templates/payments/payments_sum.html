@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{%block content%}
+
+<h2>Suma de pagos por mes</h2>
+
+<table class="table" id="payment-list-table">
+    <thead>
+      <tr>
+        <th scope="col">Mes</th>
+        <th scope="col">Año</th>
+        <th scope="col">Suma</th>
+      </tr>
+    </thead>
+    <tbody>
+        {%for my, suma in payments_sum.items%}
+        <tr>
+            <td>{{my.0}}</td>
+            <td>{{my.1}}</td>
+            <td>{{suma}}</td>
+        </tr>
+        {%endfor%}
+    </tbody>
+  </table>
+
+
+
+{%endblock content%}
+
+{% block js %}
+<script>
+    $(document).ready(function () {
+        $('#payment-list-table').DataTable();
+    });
+</script>
+
+{% endblock js %}

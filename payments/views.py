@@ -5,6 +5,9 @@ from django.views.generic.edit import CreateView
 from .forms import PaymentForm
 from dateutil.relativedelta import relativedelta
 from django.urls import reverse_lazy
+from django.views.generic import View
+from django.shortcuts import render
+from django.db.models import Sum
 
 
 class PaymentListView(ListView):
@@ -30,3 +33,24 @@ class PaymentCreateView(CreateView):
 
     def get_success_url(self):
         return reverse_lazy('services:service-detail', kwargs={'pk': self.kwargs.get('pk')})
+
+class PaymentsSumByMonthListView(View):
+    template_name = 'payments/payments_sum.html'
+    def get(self, request):
+        payments = Payment.objects.all()
+        months_and_years = payments.values_list('created_at__month', 'created_at__year').distinct()
+
+        payments_sum = dict()
+        for month_and_year in months_and_years:
+            month = month_and_year[0]
+            year = month_and_year[1]
+            payments_by_month = payments.filter(created_at__month=month, created_at__year=year)
+            total__sum = payments_by_month.aggregate(Sum('total'))['total__sum']
+            
+            payments_sum[month_and_year] = total__sum
+
+
+        context={
+            'payments_sum': payments_sum
+        }
+        return render(request, self.template_name, context)
