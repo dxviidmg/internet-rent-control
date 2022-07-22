@@ -9,6 +9,7 @@ from django.urls import reverse_lazy
 class PackageListView(ListView):
     model = Package
 
+
 class PackageCreateView(CreateView):
     model = Package
     fields = '__all__'

@@ -9,7 +9,7 @@
 <table class="table" id="package-list-table">
     <thead>
       <tr>
-        <th scope="col">Ancho de banda</th>
+        <th scope="col">Ancho de banda (Mbps)</th>
         <th scope="col">Precio</th>
         <th scope="col">Periodo</th>
       </tr>
@@ -17,8 +17,8 @@
     <tbody>
         {%for package in object_list%}
         <tr>
-        <td>{{package.bandwidth}} Mbps</td>
-        <td>#{{package.price}}</td>
+        <td>{{package.bandwidth}}</td>
+        <td>${{package.price}}</td>
         <td>{{package.get_payment_frequency_display}}</td>
         </tr>
         {%endfor%}

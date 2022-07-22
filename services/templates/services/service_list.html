@@ -11,9 +11,13 @@
     <thead>
       <tr>
         <th scope="col">#</th>
+        <th scope="col">Pertenece a</th>
+        <th>Datos actualizados</th>
         <th scope="col">Cliente</th>
+        <th scope="col">Telefono</th>
         <th scope="col">Domicilio</th>
-        <th scope="col">Paquete</th>
+        <th scope="col">Dia de pago</th>
+        <th scope="col">Dias de retraso</th>
         <th scope="col">Pagos al corriente</th>
         <th scope="col">Ver detalle</th>
       </tr>
@@ -21,11 +25,15 @@
     <tbody>
         {%for service in object_list%}
         <tr>
-        <th>{{service.id}}</th>
+        <td>{{service.id}}</td>
+        <td>{{service.belongs_to}}</td>
+        <td>{%if service.has_updated_data%}Si{%else%}No, solicitar datos{%endif%}</td>
         <td>{{service.client}}</td>
+        <td>{%if service.client.phone_number%}{{service.client.phone_number}}{%else%}Sin numero de telefóno{%endif%}</td>
         <td>{{service.address}}</td>
-        <td>{{service.package}}</td>
-        <td>{%if service.has_late_payments%} <i style="color: red;" class="fa fa-times-circle" aria-hidden="true"></i> {%else%} <i style="color: green;"  class="fa fa-check-circle" aria-hidden="true"></i>{%endif%}</td>
+        <td>{{service.get_payment_day}}</td>
+        <td>{{service.calculate_days_late_payment}}</td>
+        <td>{%if service.is_paid_today%} Si <i style="color: green;"  class="fa fa-check-circle" aria-hidden="true"></i> {%else%} No <i style="color: red;" class="fa fa-times-circle" aria-hidden="true"></i>{%endif%}</td>
         <td><a href="{%url 'services:service-detail' service.pk%}">Ver detalle</a></td>
         </tr>
         {%endfor%}
