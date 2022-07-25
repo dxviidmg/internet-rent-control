@@ -7,9 +7,12 @@ class Person(models.Model):
 
     class Meta:
         abstract = True
+    
+    def get_full_name(self):
+        return '{} {} {}'.format(self.first_name, self.last_name, self.second_last_name).strip()
 
     def __str__(self):
-        return '{} {} {}'.format(self.first_name, self.last_name, self.second_last_name)
+        return self.get_full_name()
         
         
 class Client(Person):

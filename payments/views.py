@@ -34,6 +34,7 @@ class PaymentCreateView(CreateView):
     def get_success_url(self):
         return reverse_lazy('services:service-detail', kwargs={'pk': self.kwargs.get('pk')})
 
+
 class PaymentsSumByMonthListView(View):
     template_name = 'payments/payments_sum.html'
     def get(self, request):
@@ -54,3 +55,7 @@ class PaymentsSumByMonthListView(View):
             'payments_sum': payments_sum
         }
         return render(request, self.template_name, context)
+
+
+
+
