@@ -24,8 +24,9 @@ class PaymentCreateView(CreateView):
 
     def form_valid(self, form):
         service = Service.objects.get(id=self.kwargs.get('pk'))
-        end_of_validity = service.get_end_of_validity() + relativedelta(months=form.cleaned_data['months'])
-        total = service.package.price * form.cleaned_data['months']
+        months = int(form.cleaned_data['months'])
+        end_of_validity = service.get_end_of_validity() + relativedelta(months=months)
+        total = service.package.price * months
         form.instance.service = service
         form.instance.end_of_validity = end_of_validity
         form.instance.total = total
