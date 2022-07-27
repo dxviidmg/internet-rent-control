@@ -1,7 +1,7 @@
 from services.models import Service
 from .models import Payment
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, DeleteView
 from .forms import PaymentForm
 from dateutil.relativedelta import relativedelta
 from django.urls import reverse_lazy
@@ -34,6 +34,13 @@ class PaymentCreateView(CreateView):
 
     def get_success_url(self):
         return reverse_lazy('services:service-detail', kwargs={'pk': self.kwargs.get('pk')})
+
+
+class PaymentDeleteView(DeleteView):
+    model = Payment
+    
+    def get_success_url(self):
+        return reverse_lazy('services:service-detail', kwargs={'pk': self.object.service.pk})
 
 
 class PaymentsSumByMonthListView(View):

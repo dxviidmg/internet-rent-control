@@ -10,6 +10,7 @@
         <th scope="col">Numero de meses pagados</th>
         <th scope="col">Fin de vigencia</th>
         <th scope="col">Total</th>
+        <th scope="col">Acciones</th>
       </tr>
     </thead>
     <tbody>
@@ -20,6 +21,7 @@
         <td>{{payment.months}}</td>
         <td>{{payment.end_of_validity}}</td>
         <td>{{payment.total}}</td>
+        <td>{%if object.get_end_of_validity == payment.end_of_validity%}<a href="{%url 'payments:payment-delete' payment.pk%}">Borrar</a>{%endif%}</td>
         </tr>
         {%endfor%}
     </tbody>

@@ -4,8 +4,22 @@
 
 {%block content%}
 
-<table class="table" id="service-list-table">
-    <thead>
+<table class="table display" id="service-list-table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Pertenece a</th>
+      <th scope="col">Cliente</th>
+      <th scope="col">Telefono</th>
+      <th scope="col">Domicilio</th>
+      <th scope="col">Dias de retraso</th>
+      <th scope="col">Dia de pago</th>
+      <th scope="col">Datos actualizados</th>
+      <th scope="col">Pagos al corriente</th>
+      <th scope="col">Ver detalle</th>
+    </tr>
+  </thead>
+  <thead>
       <tr>
         <th scope="col">#</th>
         <th scope="col">Pertenece a</th>
@@ -30,7 +44,7 @@
         <td>{{service.calculate_days_late_payment}}</td>
         <td>{{service.get_payment_day}}</td>
         <td>{%if service.has_updated_data%}Si{%else%}No, actualizar{%endif%}</td>
-        <td>{%if service.is_paid_today%} Si <i style="color: green;"  class="fa fa-check-circle" aria-hidden="true"></i> {%else%} No <i style="color: red;" class="fa fa-times-circle" aria-hidden="true"></i>{%endif%}</td>
+        <td>{%if service.is_paid_today%}Si <i style="color: green;"  class="fa fa-check-circle" aria-hidden="true"></i> {%else%}No <i style="color: red;" class="fa fa-times-circle" aria-hidden="true"></i>{%endif%}</td>
         <td><a href="{%url 'services:service-detail' service.pk%}">Ver detalle</a></td>
         </tr>
         {%endfor%}
@@ -43,9 +57,34 @@
 
 {% block js %}
 <script>
-    $(document).ready(function () {
-        $('#service-list-table').DataTable();
+
+$(document).ready(function () {
+    $('#service-list-table').DataTable({
+        initComplete: function () {
+            this.api()
+                .columns()
+                .every(function () {
+                    var column = this;
+                    var select = $('<select><option value=""></option></select>')
+                        .appendTo($(column.header()).empty())
+                        .on('change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex($(this).val());
+ 
+                            column.search(val ? '^' + val + '$' : '', true, false).draw();
+                        });
+ 
+                    column
+                        .data()
+                        .unique()
+                        .sort()
+                        .each(function (d, j) {
+                            select.append('<option value="' + d + '">' + d + '</option>');
+                        });
+                });
+        },
     });
+});
+
 </script>
 
 {% endblock js %}
