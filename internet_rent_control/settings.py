@@ -138,10 +138,3 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# Experimento static
-#THEME_DIRS = BASE_DIR / 'static'
-#STATICFILES_DIRS = [BASE_DIR / 'static', THEME_DIRS, ]
-
-#PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-#STATIC_ROOT = BASE_DIR / 'static/'
